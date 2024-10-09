@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class RideRequestDTO {
     private Long id;
-
+    //no jackson specifier so serialise and desearilise
     private Point pickupLocation;
 
     private Point dropOffLocation;
