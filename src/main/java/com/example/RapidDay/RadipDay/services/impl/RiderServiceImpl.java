@@ -5,7 +5,10 @@ import com.example.RapidDay.RadipDay.dto.RideDTO;
 import com.example.RapidDay.RadipDay.dto.RideRequestDTO;
 import com.example.RapidDay.RadipDay.dto.RiderDTO;
 import com.example.RapidDay.RadipDay.entities.RideRequest;
+import com.example.RapidDay.RadipDay.entities.Rider;
+import com.example.RapidDay.RadipDay.entities.User;
 import com.example.RapidDay.RadipDay.entities.enums.RideRequestStatus;
+import com.example.RapidDay.RadipDay.repositories.RiderRepository;
 import com.example.RapidDay.RadipDay.services.RiderService;
 import com.example.RapidDay.RadipDay.strategies.DriverMatchingStrategy;
 import com.example.RapidDay.RadipDay.strategies.RideFareCalculationStrategy;
@@ -21,11 +24,21 @@ import java.util.List;
 public class RiderServiceImpl implements RiderService {
 
     private final ModelMapper modelMapper;
+    private final RiderRepository riderRepository;
     private final RideFareCalculationStrategy rideFareCalculationStrategy;
     private final DriverMatchingStrategy driverMatchingStrategy;
     @Override
     public RideDTO cancelRide(Long rideId) {
         return null;
+    }
+
+    @Override
+    public Rider createNewRider(User user) {
+        Rider rider=Rider.builder()
+                .user(user)
+                .rating(0.0)
+                .build();
+        return riderRepository.save(rider);
     }
 
     @Override
